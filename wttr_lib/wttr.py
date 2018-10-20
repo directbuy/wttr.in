@@ -5,13 +5,10 @@ from gevent.pywsgi import WSGIServer
 from gevent.queue import Queue
 from gevent.monkey import patch_all
 from gevent.subprocess import Popen, PIPE, STDOUT
-patch_all()
-
 import os
 import re
 import time
 import dateutil
-
 from wttr_lib.translations import get_message, SUPPORTED_LANGS
 from wttr_lib.globals import WEGO, PYPHOON, CACHEDIR, ANSI2HTML
 from wttr_lib.globals import NOT_FOUND_LOCATION, DEFAULT_LOCATION, TEST_FILE

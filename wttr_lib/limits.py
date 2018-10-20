@@ -19,7 +19,7 @@ Usage:
 """
 
 import time
-from globals import log
+from wttr_lib.globals import log
 
 def _time_caps(minutes, hours, days):
     return {

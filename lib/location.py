@@ -15,10 +15,11 @@ import socket
 import requests
 import geoip2.database
 
-from globals import GEOLITE, GEOLOCATOR_SERVICE, IP2LCACHE, IP2LOCATION_KEY, NOT_FOUND_LOCATION, \
+from .globals import GEOLITE, GEOLOCATOR_SERVICE, IP2LCACHE, IP2LOCATION_KEY, NOT_FOUND_LOCATION, \
                     ALIASES, BLACKLIST, IATA_CODES_FILE
 
 GEOIP_READER = geoip2.database.Reader(GEOLITE)
+
 
 def ascii_only(string):
     "Check if `string` contains only ASCII symbols"

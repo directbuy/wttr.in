@@ -63,7 +63,7 @@ def load_content_and_headers( path, query ):
     p = os.path.join( CACHEDIR, timestamp, path, query )
     try:
         return open( p, 'r' ).read(), json.loads( open( p+".headers", 'r' ).read() )
-    except Exception, e:
+    except Exception as e:
         return None, None
 
 def save_content_and_headers( path, query, content, headers ):
@@ -77,7 +77,7 @@ def save_content_and_headers( path, query, content, headers ):
 def translate(text, lang):
     translated = TRANSLATIONS.get(lang, {}).get(text, text)
     if text.encode('utf-8') == translated:
-        print "%s: %s" % (lang, text)
+        print("%s: %s" % (lang, text))
     return translated
 
 def cyr(to_translate):
@@ -157,8 +157,8 @@ def proxy(path):
         content = add_translations(r.content, lang)
         try:
           save_content_and_headers( path, query_string, content, headers )
-        except Exception, e:
-          print e
+        except Exception as e:
+          print(e)
 
     return content, 200, headers
 

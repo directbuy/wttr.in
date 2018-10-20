@@ -12,14 +12,16 @@ import re
 import time
 import dateutil
 
-from translations import get_message, FULL_TRANSLATION, PARTIAL_TRANSLATION, SUPPORTED_LANGS
-from globals import WEGO, PYPHOON, CACHEDIR, ANSI2HTML, \
+from .translations import get_message, FULL_TRANSLATION, PARTIAL_TRANSLATION, SUPPORTED_LANGS
+from .globals import WEGO, PYPHOON, CACHEDIR, ANSI2HTML, \
                     NOT_FOUND_LOCATION, DEFAULT_LOCATION, TEST_FILE, \
                     log, error
+
 
 def _is_invalid_location(location):
     if '.png' in location:
         return True
+
 
 def get_wetter(location, ip, html=False, lang=None, query=None, location_name=None, full_address=None, url=None):
 
@@ -92,7 +94,7 @@ def get_wetter(location, ip, html=False, lang=None, query=None, location_name=No
                 stdout = open(test_file, 'r').read()
                 stderr = ""
                 break
-            print "LOCATION = ", location
+            print("LOCATION = ", location)
             if location == NOT_FOUND_LOCATION:
                 location_not_found = True
                 location = DEFAULT_LOCATION
@@ -120,7 +122,7 @@ def get_wetter(location, ip, html=False, lang=None, query=None, location_name=No
             p = Popen(cmd, stdout=PIPE, stderr=PIPE)
             stdout, stderr = p.communicate()
             if p.returncode != 0:
-                print "ERROR: location not found: %s" % location
+                print("ERROR: location not found: %s" % location)
                 if 'Unable to find any matching weather location to the query submitted' in stderr:
                     if location != NOT_FOUND_LOCATION:
                         NOT_FOUND_MESSAGE_HEADER = u"ERROR: %s: %s\n---\n\n" % (get_message('UNKNOWN_LOCATION', lang), location)
@@ -194,7 +196,7 @@ def get_wetter(location, ip, html=False, lang=None, query=None, location_name=No
         stdout = re.sub("<head>", "<head>" + title + opengraph, stdout)
         open(filename+'.html', 'w').write(stdout)
 
-    print "LOCATION >>> ", location
+    print("LOCATION >>> ", location)
     filename = get_filename(location, lang=lang, query=query, location_name=location_name)
     if not os.path.exists(filename):
         save_weather_data(location, filename, lang=lang, query=query, location_name=location_name, full_address=full_address)
@@ -221,7 +223,7 @@ def get_moon(location, html=False, lang=None):
     env = os.environ.copy()
     if lang:
         env['LANG'] = lang
-    print cmd
+    print(cmd)
     p = Popen(cmd, stdout=PIPE, stderr=PIPE, env=env)
     stdout = p.communicate()[0]
 

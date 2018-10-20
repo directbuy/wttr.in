@@ -282,9 +282,9 @@ def make_wttr_in_png(png_name, options=None):
     """
 
     parsed = parse_wttrin_png_name(png_name)
-    print "------"
-    print parsed
-    print "------"
+    # print "------"
+    # print parsed
+    # print "------"
 
     # if location is MyLocation it should be overriden 
     # with autodetected location (from options)
@@ -296,7 +296,7 @@ def make_wttr_in_png(png_name, options=None):
             if key not in parsed:
                 parsed[key] = val
     url = make_wttrin_query(parsed)
-    print "URL = ", url
+    # print "URL = ", url
 
     timestamp = time.strftime("%Y%m%d%H", time.localtime())
     cached_basename = url[14:].replace('/','_')
@@ -307,11 +307,11 @@ def make_wttr_in_png(png_name, options=None):
     if not os.path.exists(dirname):
         os.makedirs(dirname)
 
-    print "Cached file: %s" % cached_png_file
+    # print "Cached file: %s" % cached_png_file
     if os.path.exists(cached_png_file):
         return cached_png_file
 
-    print "Requesting URL: %s" % url
+    # print "Requesting URL: %s" % url
     text = requests.get(url).text.replace('\n', '\r\n')
     curl_output = text.encode('utf-8')
 

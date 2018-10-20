@@ -67,7 +67,7 @@ def geolocator(location):
     try:
         geo = requests.get('%s/%s' % (GEOLOCATOR_SERVICE, location)).text
     except requests.exceptions.ConnectionError as exception:
-        print "ERROR: %s" % exception
+        # print "ERROR: %s" % exception
         return None
 
     if geo == "":
@@ -77,7 +77,7 @@ def geolocator(location):
         answer = json.loads(geo.encode('utf-8'))
         return answer
     except ValueError as exception:
-        print "ERROR: %s" % exception
+        # print "ERROR: %s" % exception
         return None
 
     return None
@@ -100,7 +100,7 @@ def ip2location(ip_addr):
         if ';' in ip2location_response:
             location = ip2location_response.split(';')[3]
             open(cached, 'w').write(location)
-            print "ip2location says: %s" % location
+            # print "ip2location says: %s" % location
             return location
     except requests.exceptions.ConnectionError:
         return None
@@ -192,7 +192,7 @@ def location_processing(location, ip_addr):
             override_location_name = location[1:].replace('+', ' ')
             location = "%s,%s" % (geolocation['latitude'], geolocation['longitude'])
             full_address = geolocation['address']
-            print full_address
+            # print full_address
         else:
             location = NOT_FOUND_LOCATION #location[1:]
     try:

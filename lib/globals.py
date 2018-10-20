@@ -56,17 +56,19 @@ IP2LOCATION_KEY = ''
 def error(text):
     "log error `text` and raise a RuntimeError exception"
 
-    if not text.startswith('Too many queries'):
-        print text
+    # if not text.startswith('Too many queries'):
+    #     print text
     logging.error("ERROR %s", text)
     raise RuntimeError(text)
+
 
 def log(text):
     "log error `text` and do not raise any exceptions"
 
     if not text.startswith('Too many queries'):
-        print text
+        # print text
         logging.info(text)
+
 
 def get_help_file(lang):
     "Return help file for `lang`"

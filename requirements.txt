@@ -5,3 +5,6 @@ requests
 gevent
 dnspython
 pylint
+pillow
+pyte
+python-dateutil
